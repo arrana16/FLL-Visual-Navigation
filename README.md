@@ -5,4 +5,6 @@ In lines 39, 174 and 558, make sure that the path for the image included is corr
 
 In order for this to work you're EV3 brain must be running microPython. If it isn't click this link to see how to install it https://education.lego.com/en-us/support/mindstorms-ev3/python-for-ev3 .
 
+Aditionally, make sure that you have pygame installed on your computer.
+
 :D
