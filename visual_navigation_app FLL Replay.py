@@ -706,3 +706,4 @@ new_button = tk.Button(frame, text="write to new file", fg="#3c73e8", font = 40,
 new_button.place(relwidth=0.631, relheight = 0.08, anchor="nw", relx=0.18, rely=0.615)
 
 root.mainloop()
+
