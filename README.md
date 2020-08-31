@@ -7,4 +7,7 @@ In order for this to work you're EV3 brain must be running microPython. If it is
 
 Aditionally, make sure that you have pygame installed on your computer.
 
+If you need help you can contact me on instagram: @arrana16
+Or you can add me on Discord: arrana16#2721
+
 :D
