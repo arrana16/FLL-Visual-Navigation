@@ -1,5 +1,6 @@
 # Insert All of your objects that you're robot is using.
 objects = '''
+ev3 = EV3Brick()
 
 '''
 
