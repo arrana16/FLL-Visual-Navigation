@@ -1,7 +1,24 @@
-# Make sure that you're wheel diameter is correct:
-wheel_diameter=62.4
+# Insert All of your objects that you're robot is using.
+objects = '''
 
-# Aditionally if you're robot is not using some of the sensors or motors that we're using, make sure you go to line 340 and edit the devices
+'''
+
+# If you are using a color sensor for line following, make sure that the name of the left sensor is "lsensor" and the right one is "rsensor". 
+# If you have only one sensor for line following, name it "resnsor"
+
+
+# Configuration Settings
+# If this applies to your robot type true next to the '=' sign. If not, type false
+
+# Does yout robot line follow?
+line_following = 
+
+# Does your robot have 2 sensor for line following?
+dual_sensors = 
+
+
+# Copy the pathname of the image and paste it here
+path = ""
 
 import pygame
 import tkinter as tk
@@ -36,7 +53,7 @@ def measure():
     height=40
     radius=20
     vel=5
-    bg = pygame.image.load("/Users/abdur-rahman/Desktop/Python Code/FIRST-LEGO-League-Challenge-Mat-single.jpg")
+    bg = pygame.image.load(path)
     win.blit(bg, (0,0))
     
     def redrawGameWidnow():
@@ -171,7 +188,7 @@ def exist():
     radius=20
     vel=5
 
-    bg = pygame.image.load("/Users/abdur-rahman/Desktop/Python Code/FIRST-LEGO-League-Challenge-Mat-single.jpg")
+    bg = pygame.image.load(path)
     win.blit(bg, (0,0))
     
     def redrawGameWidnow():
@@ -339,12 +356,7 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 import math
 
 # Devices
-ev3 = EV3Brick()
-rightlm = Motor(Port.A)
-leftlm = Motor(Port.B)
-gyro = GyroSensor(Port.S2)
-rights = ColorSensor(Port.S1)
-robot = DriveBase(leftlm, rightlm, {wheel_diameter}, 96)
+{objects}
 
 # Functions
 def x_y_config(lastx_, lasty_):
@@ -457,6 +469,9 @@ def waypoint_drive(x, y, objective_speed=150):
     time = distance/objective_speed*1000
     robot.drive(objective_speed, 0, time)
 
+''')
+        if line_following:
+            main_file1.write('''
 def line_follow(distance, l_r_sensor='r', l_r='r',  speed=120):
     derivative = 0
     integral = 0
@@ -469,6 +484,9 @@ def line_follow(distance, l_r_sensor='r', l_r='r',  speed=120):
         a = 1
     if l_r =='r':
         a = -1
+''')
+            if dual_sensors:
+                main_file1.write('''
     if l_r_sensor == 'r':
         while leftlm.angle()<distance:
             proportional = rsensor.reflection()-45
@@ -490,6 +508,23 @@ def line_follow(distance, l_r_sensor='r', l_r='r',  speed=120):
             last_error = proportional
             derivative = last_error-proportional
         robot.stop()
+''')
+
+            else:
+                main_file1.write('''
+    while leftlm.angle()<distance:
+        proportional = rsensor.reflection()-45
+        integral += proportional
+        steering = a*((kp * proportional)+(ki*integral)+(kd*derivative))
+        drive_speed = speed-(speed_factor*(abs(proportional-last_error)))
+        robot.drive(drive_speed, steering)
+        last_error = proportional
+        derivative = last_error-proportional
+    robot.stop()
+
+''')
+
+        main_file1.write('''
 
 # Commands
 ev3.speaker.beep()
@@ -555,7 +590,7 @@ ev3.speaker.beep()
         radius=20
         vel=5
 
-        bg = pygame.image.load("/Users/abdur-rahman/Desktop/Python Code/FIRST-LEGO-League-Challenge-Mat-single.jpg")
+        bg = pygame.image.load(path)
         win.blit(bg, (0,0))
         
         def redrawGameWidnow():
@@ -706,4 +741,3 @@ new_button = tk.Button(frame, text="write to new file", fg="#3c73e8", font = 40,
 new_button.place(relwidth=0.631, relheight = 0.08, anchor="nw", relx=0.18, rely=0.615)
 
 root.mainloop()
-
