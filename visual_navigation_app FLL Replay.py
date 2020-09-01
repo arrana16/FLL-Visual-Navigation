@@ -1,7 +1,6 @@
 # Insert All of your objects that you're robot is using.
 objects = '''
 ev3 = EV3Brick()
-
 '''
 
 # If you are using a color sensor for line following, make sure that the name of the left sensor is "lsensor" and the right one is "rsensor". 
@@ -340,10 +339,12 @@ def new():
 
     def assign(entry):
         folder_name = entry
-        
-        os.makedirs(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/.vscode")
 
-        main_file1 = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/main.py", "x")
+        folder =  filedialog.askdirectory()
+        
+        os.makedirs(f"/{folder}/{folder_name}/.vscode")
+
+        main_file1 = open(f"/{folder}/{folder_name}/main.py", "x")
         main_file1.write(f'''#!/usr/bin/env pybricks-micropython
 from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import (Motor, TouchSensor, ColorSensor,
@@ -532,7 +533,7 @@ ev3.speaker.beep()
 
 ''')
 
-        extension = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/.vscode/extensions.json", "x")
+        extension = open(f"{folder}/{folder_name}/.vscode/extensions.json", "x")
         extension.write('''{
         // See http://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
         // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
@@ -547,7 +548,7 @@ ev3.speaker.beep()
         ]
     }''')
 
-        launch = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/.vscode/launch.json", "x")
+        launch = open(f"{folder}/{folder_name}/.vscode/launch.json", "x")
         launch.write('''{
         // Use IntelliSense to learn about possible attributes.
         // Hover to view descriptions of existing attributes.
@@ -563,7 +564,7 @@ ev3.speaker.beep()
         ]
     }''')
 
-        settings = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/.vscode/settings.json", "x")
+        settings = open(f"{folder}/{folder_name}/.vscode/settings.json", "x")
         settings.write('''// Place your settings in this file to overwrite default and user settings.
         {
         "files.eol": "\n",
@@ -571,12 +572,12 @@ ev3.speaker.beep()
         "python.linting.enabled": false
     }''')
 
-        gitignore = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/.gitignore", "x")
+        gitignore = open(f"{folder}/{folder_name}/.gitignore", "x")
         gitignore.write('''__pycache__/
     *.pyc
     venv/''')
 
-        f = open(f"/Users/abdur-rahman/Desktop/Robot Things/Robot Code/{folder_name}/main.py", 'a')
+        f = open(f"{folder}/{folder_name}/main.py", 'a')
         pygame.init()
 
 
