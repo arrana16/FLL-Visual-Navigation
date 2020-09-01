@@ -1,7 +1,19 @@
 # Insert All of your objects that you're robot is using.
 objects = '''
 ev3 = EV3Brick()
+rigthlm = Motor(Port.A)
+lefltm = Motor(Port.B)
+rightm = Motor(Port.C)
+leftm = Motor(Port.D)
+rsensor = ColorSensor(Port.S1)
+lsensor = ColorSensor(Port.S2)
+gyro = GyroSensor(Port.S3)
+colur_detector = ColorSensor(Port.S4)
 '''
+
+# Insert you're wheel diameter
+
+wheel_diameter = 
 
 # If you are using a color sensor for line following, make sure that the name of the left sensor is "lsensor" and the right one is "rsensor". 
 # If you have only one sensor for line following, name it "resnsor"
@@ -11,14 +23,14 @@ ev3 = EV3Brick()
 # If this applies to your robot type true next to the '=' sign. If not, type false
 
 # Does yout robot line follow?
-line_following = 
+line_following = True
 
 # Does your robot have 2 sensor for line following?
-dual_sensors = 
+dual_sensors = True
 
 
 # Copy the pathname of the image and paste it here
-path = ""
+path = "/Users/abdur-rahman/Downloads/FLL-Visual-Navigation-master 3/FIRST-LEGO-League-Challenge-Mat-single.jpg"
 
 import pygame
 import tkinter as tk
@@ -117,7 +129,7 @@ def measure():
             y2 = currentPoint[1]*-1
             pygame.draw.circle(win, (0,0,255), currentPoint, 15)
             pygame.draw.line(winLine, (0,0,255), lastPoint, currentPoint, 5)
-            distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*3.65*360/(wheel_diameter*math.pi))
+            distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*1.396*360/(wheel_diameter*math.pi))
             print(f"line_follow({distance})")
             labels.append(f"line_follow({distance})")
             del labels[0]
@@ -261,7 +273,7 @@ def exist():
             y2 = currentPoint[1]*-1
             pygame.draw.circle(win, (0,0,255), currentPoint, 15)
             pygame.draw.line(winLine, (0,0,255), lastPoint, currentPoint, 5)
-            distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*3.65*360/(wheel_diameter*math.pi))
+            distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*1.396*360/(wheel_diameter*math.pi))
             print(f"line_follow({distance})")
             labels.append(f"line_follow({distance})")
             del labels[0]
@@ -664,7 +676,7 @@ ev3.speaker.beep()
                 y2 = currentPoint[1]*-1
                 pygame.draw.circle(win, (0,0,255), currentPoint, 15)
                 pygame.draw.line(winLine, (0,0,255), lastPoint, currentPoint, 5)
-                distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*3.65*360/(wheel_diameter*math.pi))
+                distance = math.sqrt(((x2-x1)**2+(y2-y1)**2)*1.396*360/(wheel_diameter*math.pi))
                 print(f"line_follow({distance})")
                 labels.append(f"line_follow({distance})")
                 del labels[0]
