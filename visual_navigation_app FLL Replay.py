@@ -370,7 +370,7 @@ def waypoint(currentx, currenty, angle_changer=0, target_speed=150):
     # Distance calculated with pythagorean theorem
     global lastx
     global lasty
-    distance = math.sqrt((currentx-lastx)**2+(currenty-lasty)**2)*1.556
+    distance = math.sqrt((currentx-lastx)**2+(currenty-lasty)**2)*1.396
     # Series of logic gates to figure out angle between line and x axis using inverse of tan
 
     if currentx>lastx and currenty>lasty:
